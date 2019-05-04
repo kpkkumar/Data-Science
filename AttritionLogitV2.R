@@ -1,5 +1,4 @@
 #=========remove all from R environment
-
 rm(list=ls(all=TRUE))
 
 #Read the file
