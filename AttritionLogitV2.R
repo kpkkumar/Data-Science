@@ -8,7 +8,6 @@ head(infile)
 str(infile)
 summary(infile)
 
-
 ##################################################missing values treatment
 #install.packages("Amelia")
 library(Amelia)
@@ -52,13 +51,12 @@ boxplot(infile$YearsSinceLastPromotion)
 boxplot(infile$YearsWithCurrManager)
 ###There are outlier with employees woring with same manager more than 14 years 
 
-
 ############ Analysis of factor data #########
 library(ggplot2)
 ## Attrition Vs Business Level 
 table(infile$BusinessTravel)
 ggplot(infile,aes(BusinessTravel,fill=Attrition))+geom_bar()+
-  ggtitle("Attrition Vs Business Level")->p1
+ggtitle("Attrition Vs Business Level")->p1
 p1   # Attrition high in employees travel rarely 
 
 ## Attrition Vs Department  
@@ -72,15 +70,16 @@ p2   # Attrition high in employees working in R&D and then followed by Sales
 table(infile$EducationField)
 ggplot(infile,aes(EducationField,fill=Attrition))+geom_bar()+
   ggtitle("Attrition Vs EducationField")->p3
-p3   # Attrition high in employees in the filed of Lifescience, Medical followed 
-     # Marketing, Technical degree has employees<200 however the attrition is high
+p3   
+# Attrition high in employees in the filed of Lifescience, Medical followed 
+# Marketing, Technical degree has employees<200 however the attrition is high
 
 ## Attrition Vs Gender 
 table(infile$Gender)
 ggplot(infile,aes(Gender,fill=Attrition))+geom_bar()+
   ggtitle("Attrition Vs Gender")->p4
 p4
-     # More attrition in Male population than female
+# More attrition in Male population than female
 
 ## Attrition Vs JobRole
 table(infile$JobRole)
