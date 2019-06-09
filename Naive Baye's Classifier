@@ -36,3 +36,29 @@ if(final_pos>final_neg):
   print("The review is positive")
 else:
   print("The review is negative")
+  
+  
+  
+  #NaiveBaye's Classifier using Scikit learn
+  
+from reviews import neg_list, pos_list
+from sklearn.feature_extraction.text import CountVectorizer
+
+review = "This crib was amazing"
+counter = CountVectorizer()
+counter.fit(pos_list+neg_list)
+print(counter.vocabulary_)
+training_counts = counter.transform(neg_list + pos_list)
+
+from sklearn.naive_bayes import MultinomialNB
+
+review = "This crib was great amazing and wonderful"
+review_counts = counter.transform([review])
+
+classifier = MultinomialNB()
+
+training_labels = [0] * 1000 + [1] * 1000
+
+classifier.fit(training_counts, training_labels)
+print(classifier.predict(review_counts))
+print(classifier.predict_proba(review_counts))
