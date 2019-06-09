@@ -3,3 +3,11 @@ print(pos_list[0])
 print(neg_list[0])
 print(pos_counter['no'])
 print(neg_counter['no'])
+
+len(pos_list)
+len(neg_list)
+total_reviews=len(pos_list)+len(neg_list)
+percent_pos=len(pos_list)/total_reviews
+percent_neg=len(neg_list)/total_reviews
+print(percent_pos)
+print(percent_neg)
