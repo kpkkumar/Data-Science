@@ -28,3 +28,11 @@ for word in review_words:
   
 print(pos_probability)
 print(neg_probability)
+
+final_pos=pos_probability*percent_pos
+final_neg=neg_probability*percent_neg
+
+if(final_pos>final_neg):
+  print("The review is positive")
+else:
+  print("The review is negative")
