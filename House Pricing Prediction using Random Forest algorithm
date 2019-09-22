@@ -27,3 +27,10 @@ iowa_model.fit(train_X, train_y)
 val_predictions = iowa_model.predict(val_X)
 val_mae = mean_absolute_error(val_predictions, val_y)
 print("Validation MAE when not specifying max_leaf_nodes: {:,.0f}".format(val_mae))
+
+# Using best value for max_leaf_nodes
+iowa_model = DecisionTreeRegressor(max_leaf_nodes=100, random_state=1)
+iowa_model.fit(train_X, train_y)
+val_predictions = iowa_model.predict(val_X)
+val_mae = mean_absolute_error(val_predictions, val_y)
+print("Validation MAE for best value of max_leaf_nodes: {:,.0f}".format(val_mae))
