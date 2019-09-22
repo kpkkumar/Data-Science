@@ -47,3 +47,18 @@ valm=rf_model.predict(val_X)
 rf_val_mae = mean_absolute_error(valm,val_y)
 
 print("Validation MAE for Random Forest Model: {}".format(rf_val_mae))
+
+
+import pandas as pd
+# path to file you will use for predictions
+#test_data_path = '../input/home-data-for-ml-course/test.csv'
+
+# read test data file using pandas
+test_data = pd.read_csv('C:\\Users\\inspiron\\Downloads\\Linear Reg Data\\test.csv')
+
+# create test_X which comes from test_data but includes only the columns you used for prediction.
+# The list of columns is stored in a variable called features
+test_X = test_data[features]
+
+# make predictions which we will submit. 
+test_preds = rf_model_on_full_data.predict(test_X)
