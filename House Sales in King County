@@ -1,0 +1,238 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+#Importing Data
+data = pd.read_csv("C:\\Users\\inspiron\\Downloads\\housesalesprediction\\kc_house_data.csv")
+data=pd.DataFrame(data)
+data.head()
+#Data Types
+data.dtypes
+#Shape of dataset
+data.shape
+#Finding duplicates
+data.count()
+#Missing Values
+data.isnull().sum()
+data.describe()
+c=data.corr()
+print(c)
+sns.heatmap(c,annot=True)
+#Removing variables that are less correlated to variable price
+data.drop(["id","date","bedrooms","sqft_lot","floors","waterfront","view","condition","sqft_basement","yr_built","yr_renovated","zipcode","lat","long","sqft_lot15"],axis=1, inplace=True)
+data.shape
+
+y=data["price"]
+x=data.drop("price",axis=1)
+x.dtypes
+
+#Splitting Train and Test Sets
+from sklearn.model_selection import train_test_split
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=100)
+
+#Building Linar regression Models
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(xtrain,ytrain)    
+
+#Prediction
+prediction=model.predict(xtest)
+
+#Ploting Results
+
+plt.xlabel("y_test")
+plt.ylabel("predicted values")
+plt.scatter(ytest,prediction)
+
+output= pd.DataFrame({"Actual":ytest, "Predicted" : prediction})
+output
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest,prediction)
+
+
+#Model 2
+
+data.drop(["id","date","bedrooms","sqft_lot","floors","waterfront","condition","sqft_basement","yr_built","yr_renovated","zipcode","lat","long","sqft_lot15"],axis=1, inplace=True)
+data.shape
+
+y=data["price"]
+x=data.drop("price",axis=1)
+x.dtypes
+
+#Splitting Train and Test Sets
+from sklearn.model_selection import train_test_split
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=100)
+
+#Building Linar regression Models
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(xtrain,ytrain)    
+
+#Prediction
+prediction=model.predict(xtest)
+
+#Ploting Results
+
+plt.xlabel("y_test")
+plt.ylabel("predicted values")
+plt.scatter(ytest,prediction)
+
+output= pd.DataFrame({"Actual":ytest, "Predicted" : prediction})
+output
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest,prediction)
+#R Sq= 0.58
+
+#Model 3
+
+data.drop(["id","date","sqft_lot","floors","waterfront","condition","yr_built","yr_renovated","zipcode","lat","long","sqft_lot15"],axis=1, inplace=True)
+data.shape
+
+y=data["price"]
+x=data.drop("price",axis=1)
+x.dtypes
+
+#Splitting Train and Test Sets
+from sklearn.model_selection import train_test_split
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=100)
+
+#Building Linar regression Models
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(xtrain,ytrain)    
+
+#Prediction
+prediction=model.predict(xtest)
+
+#Ploting Results
+
+plt.xlabel("y_test")
+plt.ylabel("predicted values")
+plt.scatter(ytest,prediction)
+
+output= pd.DataFrame({"Actual":ytest, "Predicted" : prediction})
+output
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest,prediction)
+
+#Model 4
+data.drop(["id","date","sqft_lot","condition","yr_built","yr_renovated","zipcode","lat","long","sqft_lot15"],axis=1, inplace=True)
+data.shape
+
+y=data["price"]
+x=data.drop("price",axis=1)
+x.dtypes
+
+#Splitting Train and Test Sets
+from sklearn.model_selection import train_test_split
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=100)
+
+#Building Linar regression Models
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(xtrain,ytrain)    
+
+#Prediction
+prediction=model.predict(xtest)
+
+#Ploting Results
+
+plt.xlabel("y_test")
+plt.ylabel("predicted values")
+plt.scatter(ytest,prediction)
+
+output= pd.DataFrame({"Actual":ytest, "Predicted" : prediction})
+output
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest,prediction)
+
+#Model 5 All Features
+
+data.drop(["date"],axis=1, inplace=True)
+data.shape
+
+y=data["price"]
+x=data.drop("price",axis=1)
+x.dtypes
+
+#Splitting Train and Test Sets
+from sklearn.model_selection import train_test_split
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=100)
+
+#Building Linar regression Models
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(xtrain,ytrain)    
+
+#Prediction
+prediction=model.predict(xtest)
+
+#Ploting Results
+
+plt.xlabel("y_test")
+plt.ylabel("predicted values")
+plt.scatter(ytest,prediction)
+
+output= pd.DataFrame({"Actual":ytest, "Predicted" : prediction})
+output
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest,prediction)
+
+#Model 6 (after normalising)
+
+data.drop(["date","id","zipcode","long","sqft_lot15"],axis=1, inplace=True)
+data.shape
+
+y=data["price"]
+x=data.drop("price",axis=1)
+x.dtypes
+from sklearn import preprocessing
+xnorm=preprocessing.scale(x)
+
+#Splitting Train and Test Sets
+from sklearn.model_selection import train_test_split
+
+xtrain,xtest,ytrain,ytest=train_test_split(xnorm,y,test_size=0.3,random_state=100)
+
+#Building Linar regression Models
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(xtrain,ytrain)    
+
+#Prediction
+prediction=model.predict(xtest)
+
+#Ploting Results
+
+plt.xlabel("y_test")
+plt.ylabel("predicted values")
+plt.scatter(ytest,prediction)
+
+output= pd.DataFrame({"Actual":ytest, "Predicted" : prediction})
+output
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest,prediction)
