@@ -27,7 +27,6 @@ missnum.sort_values(by=0,ascending=False)
 missdata=traindata[['LotFrontage','GarageYrBlt','MasVnrArea']]
 nummeandata=missdata.fillna(missdata.mean())
 
-
 misscatdata['FireplaceQu'] = misscatdata.fillna(misscatdata['FireplaceQu'].value_counts().index[0])
 misscatdata['GarageType'] = misscatdata.fillna(misscatdata['GarageType'].value_counts().index[0])
 misscatdata['GarageCond'] = misscatdata.fillna(misscatdata['GarageCond'].value_counts().index[0])
